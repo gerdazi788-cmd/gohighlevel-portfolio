@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Abdullah Gardezi Portfolio"
+description = "A responsive personal portfolio for Abdullah Gardezi, a GoHighLevel specialist, showcasing his services, experience, selected reference-site previews, and contact options."
+version = "1.0.0"
+id = "artifacts/abdullah-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18472
+
+[services.development]
+run = "pnpm --filter @workspace/abdullah-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/abdullah-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/abdullah-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18472"
+BASE_PATH = "/"
