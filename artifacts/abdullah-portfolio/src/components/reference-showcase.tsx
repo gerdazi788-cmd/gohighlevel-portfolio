@@ -1,6 +1,6 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Maximize2, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Maximize2, Pause, Play, X } from "lucide-react";
 import { referenceSites, referenceFlows, referenceSource, refAsset } from "@/data/reference-showcase";
 
 type LightboxItem = { title: string; subtitle: string; image: string };
@@ -48,21 +48,70 @@ function Lightbox({ items, index, onIndex }: { items: LightboxItem[]; index: num
   );
 }
 
-function Rail({ label, children, testId }: { label: string; children: ReactNode; testId: string }) {
+function Rail({ label, children, testId, autoSlide = false, suspended = false }: { label: string; children: ReactNode; testId: string; autoSlide?: boolean; suspended?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const resumeAfter = useRef(0);
+
+  useEffect(() => {
+    if (!autoSlide) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(media.matches);
+    update();
+    media.addEventListener("change", update);
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.15 });
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      media.removeEventListener("change", update);
+      observer.disconnect();
+    };
+  }, [autoSlide]);
+
+  useEffect(() => {
+    if (!autoSlide || paused || hovered || focused || reducedMotion || suspended || !visible) return;
+    const timer = window.setInterval(() => {
+      const el = ref.current;
+      if (!el || document.hidden || Date.now() < resumeAfter.current) return;
+      const max = el.scrollWidth - el.clientWidth;
+      if (max <= 0) return;
+      const cards = el.children;
+      const step = cards.length > 1
+        ? (cards[1] as HTMLElement).offsetLeft - (cards[0] as HTMLElement).offsetLeft
+        : el.clientWidth;
+      el.scrollTo({ left: el.scrollLeft >= max - 2 ? 0 : Math.min(el.scrollLeft + step, max), behavior: "smooth" });
+    }, 4500);
+    return () => window.clearInterval(timer);
+  }, [autoSlide, paused, hovered, focused, reducedMotion, suspended, visible]);
+
+  const delaySlide = () => { resumeAfter.current = Date.now() + 8000; };
   const scroll = (dir: number) => {
     const el = ref.current; if (!el) return;
+    delaySlide();
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.scrollBy({ left: dir * el.clientWidth * 0.85, behavior: reduce ? "auto" : "smooth" });
   };
   const btn = "grid h-11 w-11 place-items-center rounded-full border border-border bg-card/60 transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
   return (
-    <div>
+    <div
+      onPointerEnter={(e) => { if (e.pointerType === "mouse") setHovered(true); }}
+      onPointerLeave={() => setHovered(false)}
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false); }}
+    >
       <div className="mb-5 flex justify-end gap-2">
+        {autoSlide && !reducedMotion && (
+          <button onClick={() => setPaused((value) => !value)} className={btn} aria-label={paused ? "Play automation slideshow" : "Pause automation slideshow"} aria-pressed={paused} data-testid="button-flows-autoplay">
+            {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+          </button>
+        )}
         <button onClick={() => scroll(-1)} className={btn} aria-label={`Scroll ${label} back`} data-testid={`button-${testId}-prev`}><ArrowLeft className="h-4 w-4" /></button>
         <button onClick={() => scroll(1)} className={btn} aria-label={`Scroll ${label} forward`} data-testid={`button-${testId}-next`}><ArrowRight className="h-4 w-4" /></button>
       </div>
-      <div ref={ref} role="region" aria-label={label} tabIndex={0}
+      <div ref={ref} role="region" aria-label={label} tabIndex={0} onPointerDown={delaySlide} onWheel={delaySlide}
         className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-4 focus-visible:outline-none md:-mx-8 md:scroll-px-8 md:px-8 [scrollbar-width:thin]">
         {children}
       </div>
@@ -150,7 +199,7 @@ export function ReferenceAutomationsSection() {
           <Note />
         </div>
         <div className="mt-12">
-          <Rail label="Reference automation workflows" testId="flows">
+          <Rail label="Reference automation workflows" testId="flows" autoSlide suspended={open !== null}>
             {referenceFlows.map((f, i) => (
               <article key={f.id} className="flex w-[88%] shrink-0 snap-start flex-col overflow-hidden rounded-[22px] border border-border bg-background/70 sm:w-[420px]" data-testid={`card-refflow-${f.id}`}>
                 <button onClick={() => setOpen(i)} className="group relative block aspect-[16/9] overflow-hidden border-b border-border bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring" aria-label={`View full workflow screenshot: ${f.title}`} data-testid={`button-view-refflow-${f.id}`}>
