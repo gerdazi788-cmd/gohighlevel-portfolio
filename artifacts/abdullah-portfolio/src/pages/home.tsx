@@ -7,6 +7,7 @@ import {
 import {
   profile, contactLinks, services, skillGroups, projects, processSteps, reasons, testimonials, projectTypes, navLinks,
 } from "@/data/portfolio";
+import { ReferenceSitesSection, ReferenceAutomationsSection } from "@/components/reference-showcase";
 
 const serviceIcons = { funnels: Filter, websites: Globe, automation: Workflow, a2p: MessageSquareText, integrations: Plug, onboarding: UserCheck };
 const reasonIcons = [Layers, Code2, Boxes, ShieldCheck, ScanEye];
@@ -617,7 +618,7 @@ export default function Home() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">Skip to content</a>
       <Nav />
       <main id="main">
-        <Hero /><TrustStrip /><About /><Services /><Skills /><Work /><Process /><Why /><Testimonials /><CTA /><Contact />
+        <Hero /><TrustStrip /><About /><Services /><Skills /><Work /><ReferenceSitesSection /><ReferenceAutomationsSection /><Process /><Why /><Testimonials /><CTA /><Contact />
       </main>
       <Footer />
     </>
