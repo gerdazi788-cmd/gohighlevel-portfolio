@@ -153,7 +153,7 @@ function Hero() {
             </div>
             <div className="overflow-hidden rounded-[20px]">
               {profile.profileImage
-                ? <img src={profile.profileImage} alt="Abdullah Gardezi" fetchPriority="high" className="aspect-[4/5] w-full object-cover object-[60%_center] transition-transform duration-700 group-hover:scale-105" />
+                ? <img src={profile.profileImage} alt="Abdullah Gardezi" fetchPriority="high" className="aspect-[4/5] w-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
                 : <Placeholder label="[PROFILE IMAGE PLACEHOLDER]" className="aspect-[4/5] w-full transition-transform duration-700 group-hover:scale-[1.03]" />}
             </div>
           </div>

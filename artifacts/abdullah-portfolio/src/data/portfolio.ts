@@ -9,8 +9,8 @@ export const profile = {
   location: "Pakistan",
   education: "Bachelor's in Computer Science",
   experience: "3+ Years",
-  profileImage: `${import.meta.env.BASE_URL}abdullah-profile.jpeg`,
-  aboutImage: `${import.meta.env.BASE_URL}abdullah-profile.jpeg`,
+  profileImage: `${import.meta.env.BASE_URL}abdullah-profile-new.png`,
+  aboutImage: `${import.meta.env.BASE_URL}abdullah-profile-new.png`,
 };
 
 /** Contact placeholders — set `href` to real URLs when available. null = not yet provided. */
