@@ -518,7 +518,7 @@ function Contact() {
           <ul className="reveal mt-8 grid gap-3 sm:grid-cols-2" style={d(200)}>
             {contactLinks.map((c) => {
               const Icon = contactIcons[c.id];
-              const inner = (<><Icon className="h-4 w-4 text-primary" aria-hidden /><span className="min-w-0"><span className="block text-sm font-medium">{c.label}</span><span className="block truncate font-mono text-[10px] text-muted-foreground">{c.href ?? c.placeholder}</span></span></>);
+              const inner = (<><Icon className="h-4 w-4 text-primary" aria-hidden /><span className="text-sm font-medium">{c.label}</span></>);
               return (
                 <li key={c.id}>
                   {c.href
