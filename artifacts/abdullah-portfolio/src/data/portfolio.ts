@@ -77,8 +77,8 @@ export const projectTypes = ["Funnel Design", "Website Design", "Automation", "A
 
 export const navLinks = [
   { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
+  { href: "#about", label: "About" },
   { href: "#work", label: "Portfolio" },
   { href: "#automations", label: "Automations" },
   { href: "#process", label: "Process" },

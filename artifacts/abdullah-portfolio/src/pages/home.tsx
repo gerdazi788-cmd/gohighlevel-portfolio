@@ -210,7 +210,7 @@ function About() {
           </dl>
         </div>
         <div className="order-1 lg:order-2">
-          <Eyebrow index="01">About Me</Eyebrow>
+          <Eyebrow index="02">About Me</Eyebrow>
           <h2 className="reveal mt-6 font-display text-4xl font-bold leading-[1.02] md:text-6xl" style={d(80)}>Building GHL Systems That <span className="text-grad">Actually Work</span></h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p className="reveal" style={d(140)}>I'm Abdullah Gardezi, a Computer Science graduate from Pakistan with 3+ years of hands-on experience working with GoHighLevel.</p>
@@ -229,7 +229,7 @@ function Services() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <Eyebrow index="02">Services / Expertise</Eyebrow>
+            <Eyebrow index="01">Services / Expertise</Eyebrow>
             <h2 className="reveal mt-6 max-w-2xl font-display text-4xl font-bold leading-[1.02] md:text-6xl" style={d(80)}>Six modules. One connected system.</h2>
           </div>
         </div>
@@ -613,7 +613,7 @@ export default function Home() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">Skip to content</a>
       <Nav />
       <main id="main">
-        <Hero /><TrustStrip /><About /><Services /><Skills /><Work /><ReferenceSitesSection /><ReferenceAutomationsSection /><Process /><Why /><Testimonials /><CTA /><Contact />
+        <Hero /><TrustStrip /><Services /><About /><Skills /><Work /><ReferenceSitesSection /><ReferenceAutomationsSection /><Process /><Why /><Testimonials /><CTA /><Contact />
       </main>
       <Footer />
     </>
