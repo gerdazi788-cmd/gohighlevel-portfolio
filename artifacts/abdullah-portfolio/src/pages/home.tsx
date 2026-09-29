@@ -443,7 +443,7 @@ function Testimonials() {
         <Eyebrow index="07">Testimonials</Eyebrow>
         <div className="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <h2 id="t-title" className="reveal font-display text-4xl font-bold md:text-6xl" style={d(80)}>Client words</h2>
-          <span className="reveal font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground" style={d(120)}>Placeholder slots — awaiting real testimonials</span>
+          <span className="reveal max-w-sm font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground" style={d(120)}>Demo testimonials — fictional names and messages, illustrative photos</span>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
@@ -452,7 +452,7 @@ function Testimonials() {
               <blockquote className="mt-6 font-display text-xl leading-snug text-muted-foreground">"{t.quote}"</blockquote>
               <figcaption className="mt-8 flex items-center gap-4 border-t border-border pt-5">
                 {t.photo
-                  ? <img src={t.photo} alt={t.name} className="h-12 w-12 rounded-full object-cover" />
+                  ? <img src={t.photo} alt={`Illustrative portrait for ${t.name}, demo client`} loading="lazy" className="h-12 w-12 shrink-0 rounded-full object-cover" />
                   : <Placeholder label="[CLIENT PHOTO PLACEHOLDER]" compact className="h-12 w-12 shrink-0 rounded-full border border-border" />}
                 <div>
                   <div className="font-medium">{t.name}</div>

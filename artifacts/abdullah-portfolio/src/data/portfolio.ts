@@ -66,11 +66,11 @@ export const reasons = [
   { title: "Strong Attention to Detail", desc: "Every form, trigger, and notification is tested before launch — not after a client finds the bug." },
 ];
 
-/** Testimonial placeholders — replace with real, approved client quotes only. */
+/** Fictional demo testimonials; portrait images are illustrative, not actual clients. */
 export const testimonials = [
-  { id: "t1", quote: "Client testimonial goes here.", name: "Client Name", role: "Company / Role", photo: null as string | null },
-  { id: "t2", quote: "Client testimonial goes here.", name: "Client Name", role: "Company / Role", photo: null as string | null },
-  { id: "t3", quote: "Client testimonial goes here.", name: "Client Name", role: "Company / Role", photo: null as string | null },
+  { id: "t1", quote: "Abdullah turned our scattered lead follow-up into a clear, organized GoHighLevel system. Our team knows exactly what to do next, and the handover was easy to follow.", name: "Sarah Mitchell", role: "Marketing Agency Owner", photo: `${import.meta.env.BASE_URL}demo-client-sarah.jpg` },
+  { id: "t2", quote: "From the landing page to appointment reminders, every detail felt connected. Abdullah listened to what we needed and built a booking flow that was simple for our customers to use.", name: "Daniel Brooks", role: "Home Services Founder", photo: `${import.meta.env.BASE_URL}demo-client-daniel.jpg` },
+  { id: "t3", quote: "The workflows took so much repetitive admin off our plate. Clear communication, a thoughtful setup, and a walkthrough that made managing our CRM feel straightforward.", name: "Emily Carter", role: "Online Coaching Business Owner", photo: `${import.meta.env.BASE_URL}demo-client-emily.jpg` },
 ];
 
 export const projectTypes = ["Funnel Design", "Website Design", "Automation", "A2P / 10DLC", "Integrations", "Client Onboarding", "Complete GHL Setup", "Other"];
