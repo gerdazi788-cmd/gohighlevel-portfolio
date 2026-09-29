@@ -73,18 +73,27 @@ function Rail({ label, children, testId, autoSlide = false, suspended = false }:
 
   useEffect(() => {
     if (!autoSlide || paused || hovered || focused || reducedMotion || suspended || !visible) return;
-    const timer = window.setInterval(() => {
+    let frame = 0;
+    let previousTime = 0;
+    let position = ref.current?.scrollLeft ?? 0;
+    const tick = (time: number) => {
+      const elapsed = previousTime ? Math.min(time - previousTime, 50) : 0;
+      previousTime = time;
       const el = ref.current;
-      if (!el || document.hidden || Date.now() < resumeAfter.current) return;
-      const max = el.scrollWidth - el.clientWidth;
-      if (max <= 0) return;
-      const cards = el.children;
-      const step = cards.length > 1
-        ? (cards[1] as HTMLElement).offsetLeft - (cards[0] as HTMLElement).offsetLeft
-        : el.clientWidth;
-      el.scrollTo({ left: el.scrollLeft >= max - 2 ? 0 : Math.min(el.scrollLeft + step, max), behavior: "smooth" });
-    }, 4500);
-    return () => window.clearInterval(timer);
+      if (el) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (!document.hidden && Date.now() >= resumeAfter.current && max > 0) {
+          position += elapsed * 0.035;
+          if (position >= max) position = 0;
+          el.scrollTo({ left: position, behavior: "instant" });
+        } else {
+          position = el.scrollLeft;
+        }
+      }
+      frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
   }, [autoSlide, paused, hovered, focused, reducedMotion, suspended, visible]);
 
   const delaySlide = () => { resumeAfter.current = Date.now() + 8000; };
@@ -98,8 +107,9 @@ function Rail({ label, children, testId, autoSlide = false, suspended = false }:
   return (
     <div
       onPointerEnter={(e) => { if (e.pointerType === "mouse") setHovered(true); }}
-      onPointerLeave={() => setHovered(false)}
-      onFocusCapture={() => setFocused(true)}
+      onPointerLeave={() => { resumeAfter.current = 0; setHovered(false); }}
+      onFocusCapture={(e) => setFocused(e.target.matches(":focus-visible"))}
+      onKeyDownCapture={() => setFocused(true)}
       onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false); }}
     >
       <div className="mb-5 flex justify-end gap-2">
@@ -112,6 +122,7 @@ function Rail({ label, children, testId, autoSlide = false, suspended = false }:
         <button onClick={() => scroll(1)} className={btn} aria-label={`Scroll ${label} forward`} data-testid={`button-${testId}-next`}><ArrowRight className="h-4 w-4" /></button>
       </div>
       <div ref={ref} role="region" aria-label={label} tabIndex={0} onPointerDown={delaySlide} onWheel={delaySlide}
+        style={autoSlide && !reducedMotion ? { scrollSnapType: "none" } : undefined}
         className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-4 focus-visible:outline-none md:-mx-8 md:scroll-px-8 md:px-8 [scrollbar-width:thin]">
         {children}
       </div>
