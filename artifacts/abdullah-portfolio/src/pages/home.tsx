@@ -136,7 +136,7 @@ function Hero() {
             <span className="anim-pulse h-1.5 w-1.5 rounded-full bg-primary" /> GHL Systems Online — {profile.location}
           </div>
           <h1 className="reveal font-display text-[2.6rem] font-bold leading-[0.98] sm:text-6xl lg:text-[4.6rem]" style={d(80)}>
-            GoHighLevel Specialist Building <span className="text-grad">Funnels, Automations</span> &amp; High-Converting Digital Systems
+            GoHighLevel Specialist for <span className="text-grad">Funnels &amp; Automations</span>
           </h1>
           <p className="reveal mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground" style={d(180)}>
             Hi, I'm Abdullah Gardezi — a GoHighLevel specialist with 3+ years of experience helping businesses build funnels, websites, automations, integrations, and complete GHL systems.
