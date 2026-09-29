@@ -104,7 +104,7 @@ function Rail({ label, children, testId, autoSlide = false, suspended = false }:
     >
       <div className="mb-5 flex justify-end gap-2">
         {autoSlide && !reducedMotion && (
-          <button onClick={() => setPaused((value) => !value)} className={btn} aria-label={paused ? "Play automation slideshow" : "Pause automation slideshow"} aria-pressed={paused} data-testid="button-flows-autoplay">
+          <button onClick={() => setPaused((value) => !value)} className={btn} aria-label={`${paused ? "Play" : "Pause"} ${label} slideshow`} aria-pressed={paused} data-testid={`button-${testId}-autoplay`}>
             {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
           </button>
         )}
@@ -142,7 +142,7 @@ export function ReferenceSitesSection() {
           </div>
         </div>
         <div className="mt-12">
-          <Rail label="Reference website builds" testId="sites">
+          <Rail label="Reference website builds" testId="sites" autoSlide suspended={open !== null}>
             {referenceSites.map((s, i) => (
               <article key={s.id} className="group w-[82%] shrink-0 snap-start sm:w-[380px]" data-testid={`card-refsite-${s.id}`}>
                 <button onClick={() => setOpen(i)} className="block w-full overflow-hidden rounded-[22px] border border-border bg-card/50 text-left transition-all duration-500 hover:-translate-y-1 hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:hover:translate-y-0" aria-label={`View full screenshot of ${s.domain}`} data-testid={`button-view-refsite-${s.id}`}>
