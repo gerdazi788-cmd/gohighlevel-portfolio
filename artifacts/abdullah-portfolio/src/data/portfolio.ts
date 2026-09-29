@@ -9,9 +9,8 @@ export const profile = {
   location: "Pakistan",
   education: "Bachelor's in Computer Science",
   experience: "3+ Years",
-  // Replace with an imported image path, e.g. import img from "@assets/profile.jpg"
-  profileImage: null as string | null,
-  aboutImage: null as string | null,
+  profileImage: `${import.meta.env.BASE_URL}abdullah-profile.jpeg`,
+  aboutImage: `${import.meta.env.BASE_URL}abdullah-profile.jpeg`,
 };
 
 /** Contact placeholders — set `href` to real URLs when available. null = not yet provided. */

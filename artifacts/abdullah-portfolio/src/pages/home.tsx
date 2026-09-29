@@ -153,7 +153,7 @@ function Hero() {
             </div>
             <div className="overflow-hidden rounded-[20px]">
               {profile.profileImage
-                ? <img src={profile.profileImage} alt="Abdullah Gardezi" className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                ? <img src={profile.profileImage} alt="Abdullah Gardezi" fetchPriority="high" className="aspect-[4/5] w-full object-cover object-[60%_center] transition-transform duration-700 group-hover:scale-105" />
                 : <Placeholder label="[PROFILE IMAGE PLACEHOLDER]" className="aspect-[4/5] w-full transition-transform duration-700 group-hover:scale-[1.03]" />}
             </div>
           </div>
@@ -193,7 +193,7 @@ function About() {
         <div className="reveal group order-2 lg:order-1">
           <div className="relative overflow-hidden rounded-[28px] border border-border">
             {profile.aboutImage
-              ? <img src={profile.aboutImage} alt="About Abdullah Gardezi" className="aspect-[5/4] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              ? <img src={profile.aboutImage} alt="Abdullah Gardezi in a navy suit" loading="lazy" className="aspect-[5/4] w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
               : <Placeholder label="[ABOUT IMAGE PLACEHOLDER]" className="aspect-[5/4] w-full transition-transform duration-700 group-hover:scale-[1.03]" />}
           </div>
           <dl className="mt-4 grid grid-cols-3 gap-3">
