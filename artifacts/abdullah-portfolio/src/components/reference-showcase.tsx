@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Maximize2, Pause, Play, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Maximize2, Pause, Play, X } from "lucide-react";
 import { referenceSites, referenceFlows, referenceSource, refAsset } from "@/data/reference-showcase";
 
 type LightboxItem = { title: string; subtitle: string; image: string };
@@ -212,9 +212,6 @@ export function ReferenceAutomationsSection() {
               </article>
             ))}
           </Rail>
-          <a href={referenceSource.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary" data-testid="link-reference-source-footer">
-            Source: {referenceSource.url.replace(/^https:\/\/|\/$/g, "")} <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </a>
         </div>
       </div>
       <Lightbox items={items} index={open} onIndex={setOpen} />
