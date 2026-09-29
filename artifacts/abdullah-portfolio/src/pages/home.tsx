@@ -232,7 +232,6 @@ function Services() {
             <Eyebrow index="02">Services / Expertise</Eyebrow>
             <h2 className="reveal mt-6 max-w-2xl font-display text-4xl font-bold leading-[1.02] md:text-6xl" style={d(80)}>Six modules. One connected system.</h2>
           </div>
-          <p className="reveal max-w-sm text-muted-foreground" style={d(140)}>Each service stands alone — but they're designed to plug into each other inside a single GoHighLevel account.</p>
         </div>
         <div className="mt-14 grid gap-px overflow-hidden rounded-[28px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => {
@@ -350,10 +349,6 @@ function Work() {
         <Eyebrow index="04">Selected Work</Eyebrow>
         <div className="mt-6 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <h2 className="reveal max-w-2xl font-display text-4xl font-bold leading-[1.02] md:text-6xl" style={d(80)}>Project showcase</h2>
-          <div className="reveal max-w-md rounded-2xl border border-accent/40 bg-accent/10 p-4 text-sm leading-relaxed" style={d(140)} role="note" data-testid="text-reference-disclaimer">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">Reference previews</span>
-            <p className="mt-1 text-foreground/90">The live sites below are third-party reference examples shown as placeholders for layout purposes. They are not presented as Abdullah's own work and will be replaced with real projects.</p>
-          </div>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {projects.map((p, i) => (

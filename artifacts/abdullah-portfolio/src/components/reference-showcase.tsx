@@ -119,21 +119,6 @@ function Rail({ label, children, testId, autoSlide = false, suspended = false }:
   );
 }
 
-function Note() {
-  return (
-    <div className="reveal max-w-md rounded-2xl border border-accent/40 bg-accent/10 p-4 text-sm leading-relaxed" role="note">
-      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">Reference examples</span>
-      <p className="mt-1 text-foreground/90">
-        Examples sourced from{" "}
-        <a href={referenceSource.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-foreground" data-testid="link-reference-source">
-          {referenceSource.name}'s portfolio<span className="sr-only"> (opens in new tab)</span>
-        </a>
-        , shown for reference. They are not Abdullah's projects, and any outcomes described belong to the original source.
-      </p>
-    </div>
-  );
-}
-
 function Eyebrow({ index, children }: { index: string; children: ReactNode }) {
   return (
     <div className="reveal flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
@@ -155,7 +140,6 @@ export function ReferenceSitesSection() {
             <h2 id="ref-sites-title" className="reveal max-w-2xl font-display text-4xl font-bold leading-[1.02] md:text-6xl">Precision-built for real businesses</h2>
             <p className="reveal mt-5 max-w-lg text-muted-foreground">Funnels, websites, and CRM pages — tap any card to view the full-page screenshot.</p>
           </div>
-          <Note />
         </div>
         <div className="mt-12">
           <Rail label="Reference website builds" testId="sites">
@@ -196,7 +180,6 @@ export function ReferenceAutomationsSection() {
             <h2 id="ref-flows-title" className="reveal max-w-2xl font-display text-4xl font-bold leading-[1.02] md:text-6xl">Enterprise-grade automations in production</h2>
             <p className="reveal mt-5 max-w-lg text-muted-foreground">Problem-to-solution breakdowns of real workflow builds — the kind of logic Abdullah designs inside GoHighLevel.</p>
           </div>
-          <Note />
         </div>
         <div className="mt-12">
           <Rail label="Reference automation workflows" testId="flows" autoSlide suspended={open !== null}>
