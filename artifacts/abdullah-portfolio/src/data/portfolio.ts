@@ -15,9 +15,9 @@ export const profile = {
 
 /** Contact placeholders — set `href` to real URLs when available. null = not yet provided. */
 export const contactLinks: { id: string; label: string; placeholder: string; href: string | null }[] = [
-  { id: "email", label: "Email", placeholder: "[EMAIL PLACEHOLDER]", href: null },
-  { id: "linkedin", label: "LinkedIn", placeholder: "[LINKEDIN URL PLACEHOLDER]", href: null },
-  { id: "whatsapp", label: "WhatsApp", placeholder: "[WHATSAPP NUMBER PLACEHOLDER]", href: null },
+  { id: "email", label: "Email", placeholder: "[EMAIL PLACEHOLDER]", href: "mailto:gerdazi788@gmail.com" },
+  { id: "linkedin", label: "LinkedIn", placeholder: "[LINKEDIN URL PLACEHOLDER]", href: "https://www.linkedin.com/in/abdullah-gardezi" },
+  { id: "whatsapp", label: "WhatsApp", placeholder: "[WHATSAPP NUMBER PLACEHOLDER]", href: "https://wa.me/923190665253" },
   { id: "portfolio", label: "Portfolio / GHL links", placeholder: "[PROJECT LINKS PLACEHOLDER]", href: null },
 ];
 

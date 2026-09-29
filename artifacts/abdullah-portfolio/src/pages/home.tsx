@@ -592,11 +592,11 @@ function Footer() {
         </div>
         <div className="mt-12 flex flex-col-reverse justify-between gap-6 border-t border-border pt-6 md:flex-row md:items-center">
           <p className="text-sm text-muted-foreground">© 2026 Abdullah Gardezi. All rights reserved.</p>
-          <ul className="flex gap-2" aria-label="Social links (placeholders)">
+          <ul className="flex gap-2" aria-label="Contact and social links">
             {contactLinks.slice(0, 3).map((c) => {
               const Icon = contactIcons[c.id];
               return <li key={c.id}>{c.href
-                ? <a href={c.href} target="_blank" rel="noopener noreferrer" aria-label={c.label} className="grid h-11 w-11 place-items-center rounded-full border border-border hover:border-primary hover:text-primary"><Icon className="h-4 w-4" /></a>
+                ? <a href={c.href} target={c.href.startsWith("https://") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={c.label} title={c.label} className="grid h-11 w-11 place-items-center rounded-full border border-border hover:border-primary hover:text-primary"><Icon className="h-4 w-4" /></a>
                 : <span title={`${c.label} — placeholder`} aria-label={`${c.label} placeholder`} className="grid h-11 w-11 place-items-center rounded-full border border-dashed border-border text-muted-foreground"><Icon className="h-4 w-4" /></span>}</li>;
             })}
           </ul>
