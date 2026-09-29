@@ -123,7 +123,7 @@ function Rail({ label, children, testId, autoSlide = false, suspended = false }:
       </div>
       <div ref={ref} role="region" aria-label={label} tabIndex={0} onPointerDown={delaySlide} onWheel={delaySlide}
         style={autoSlide && !reducedMotion ? { scrollSnapType: "none" } : undefined}
-        className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-4 focus-visible:outline-none md:-mx-8 md:scroll-px-8 md:px-8 [scrollbar-width:thin]">
+        className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-4 focus-visible:outline-none md:-mx-8 md:scroll-px-8 md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {children}
       </div>
     </div>
