@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace=@workspace/abdullah-portfolio",
-    "build": "npm run build --workspace=@workspace/abdullah-portfolio"
+    "build": "npm run build --workspace=@workspace/abdullah-portfolio",
+    "lint": "npm run typecheck --workspace=@workspace/abdullah-portfolio"
   },
   "devDependencies": {
     "typescript": "~5.9.3"
